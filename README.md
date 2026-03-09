@@ -1,32 +1,41 @@
-# My Claude Code Config
+# AI Agent Config for iOS Development
 
-My `CLAUDE.md` configuration for [Claude Code](https://docs.anthropic.com/en/docs/claude-code), Anthropic's agentic coding tool — tailored for iOS development.
+Configuration files for AI coding agents, tailored for iOS development. Available in two formats:
 
-## [`claude-ios-dev.md`](./claude-ios-dev.md)
+## Files
 
-Project-level config for an **iOS app** (`your-repo/.claude/CLAUDE.md`). Covers:
+### [`claude-ios-dev.md`](./claude-ios-dev.md) — Claude Code version
+Place at `your-repo/.claude/CLAUDE.md`. Includes Claude-specific features:
+- **Custom skills** (slash commands) for build, test, MR creation, code review, localization
+- Git conventions, shell functions, oh-my-zsh aliases
+- Merge request rules, testing & verification, localization workflow
+- Project info and company resources
 
-- **Custom skills** — Claude invokes project-specific workflows (build, test, create MR, review MR, localization, etc.) instead of guessing commands
-- **Git conventions** — branching rules, naming format, shell functions, oh-my-zsh aliases
-- **Merge request rules** — target branch, templates, ticket references
-- **Testing & verification** — run tests before committing, verify fixes by building
-- **Localization workflow**
-- **Project info and company resources**
+### [`agents-ios-dev.md`](./agents-ios-dev.md) — Vendor-agnostic version
+Place at `your-repo/AGENTS.md`. Works with Claude Code, Cursor, GitHub Copilot, Google Jules, OpenAI Codex, and others. Same content minus Claude-specific skills — replaced with explicit build/test commands.
 
-## How it works
+## CLAUDE.md vs AGENTS.md
 
-Claude Code loads `your-repo/.claude/CLAUDE.md` when working inside that repo. You can also have a global config at `~/.claude/CLAUDE.md` that applies to every project.
+| | `CLAUDE.md` | `AGENTS.md` |
+|---|---|---|
+| Supported by | Claude Code | Most AI coding agents |
+| Skills (slash commands) | Yes | No |
+| Format | Markdown | Markdown |
+| Nesting (monorepos) | Yes | Yes |
+
+Use `CLAUDE.md` if you're all-in on Claude Code and want skills. Use `AGENTS.md` if you work with multiple agents or want portability. You can also use both — Claude Code reads both files.
+
+Learn more about the AGENTS.md convention at [agents.md](https://agents.md).
 
 ## Usage
 
-1. Copy `claude-ios-dev.md` to `your-repo/.claude/CLAUDE.md`
-2. Replace placeholders (ticket prefixes, URLs, project names) with your own
-3. Add your own sections as needed
+1. Pick your version (or both)
+2. Copy to your repo (`CLAUDE.md` → `.claude/CLAUDE.md`, `AGENTS.md` → repo root)
+3. Replace placeholders (ticket prefixes, URLs, project names) with your own
 
 ## Tips
 
-- Keep it concise — this file is loaded into context every session
+- Keep it concise — these files are loaded into context every session
 - Focus on **behaviors** you want to change from defaults
-- Use it for things you'd otherwise repeat every conversation
-- Shell functions and aliases are great here — teach Claude your shortcuts once
-- Skills (slash commands) let you encode complex multi-step workflows that Claude follows exactly
+- Shell functions and aliases are great — teach the agent your shortcuts once
+- In Claude Code, skills let you encode multi-step workflows the agent follows exactly
